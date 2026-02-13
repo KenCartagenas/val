@@ -1,0 +1,163 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+body, html {
+    height: 100vh;
+    width: 100vw;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: rgb(18, 18, 19);
+}
+
+
+
+#main-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(18, 18, 19);
+}
+
+#content-container {
+    height: 90%;
+    width: 95%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+#ttl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#boxes {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.row {
+    height: 20%;
+    width: 100%;
+    max-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.tile {
+    font-weight: 1000;
+    height: 95%;
+    width: 18%;
+    max-height: 70px;
+    max-width: 70px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+
+    padding: 10px 25px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #555555;
+    background: linear-gradient(to bottom, #4d4d4d 0%, #424242 100%);
+    color: white;
+    font-weight: bold;
+}
+
+#keyboard {
+    margin-top: 10px;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.krow {
+    height: 33%;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+    align-items: center;
+}
+
+.krow button {
+    height: 85%;
+    min-width: unset;
+
+    width: 20px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    text-align: center;
+
+    padding: 0px 17px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #555555;
+    background: linear-gradient(to bottom, #4d4d4d 0%, #424242 100%);
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.krow button span {
+    display: inline-block;
+    transform: translateX(-4px);
+}
+
+#ENTER span{
+    display: inline-block;
+    transform: translateX(-12px) translateY(3px);
+}
+
+#DEL span{
+    display: inline-block;
+    transform: translateX(-12px) translateY(3px);
+}
+
+.krow button:active {
+    background: rgb(145, 145, 145);
+}
+
+#btns {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#btns button {
+    height: 40px;
+    width: 95x;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #15345a;
+    background: linear-gradient(to bottom, #4a7bbd 0%, #2a5894 100%);
+    color: white;
+    font-family: "Arial Rounded MT Bold", "Helvetica", sans-serif;
+    font-weight: bold;
+    
+}
