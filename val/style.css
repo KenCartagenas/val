@@ -21,6 +21,7 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: rgb(18, 18, 19);
 }
 
@@ -83,6 +84,10 @@ body {
     background: linear-gradient(to bottom, #4d4d4d 0%, #424242 100%);
     color: white;
     font-weight: bold;
+}
+
+.tile:hover {
+    transform: rotateY(180deg);
 }
 
 #keyboard {
@@ -154,10 +159,31 @@ body {
     padding: 10px 25px;
     border: none;
     border-radius: 12px;
-    box-shadow: 0 4px 0 #15345a;
-    background: linear-gradient(to bottom, #4a7bbd 0%, #2a5894 100%);
-    color: white;
     font-family: "Arial Rounded MT Bold", "Helvetica", sans-serif;
     font-weight: bold;
-    
+}
+
+#play {
+    background: linear-gradient(to bottom, #98ffa1 0%, #07ff51 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 0 #005c23;
+}
+
+#play:active {
+    background: linear-gradient(to bottom, #427046 0%, #036621 100%);
+}
+
+.animate {
+  animation: upDown 1s ease-in-out, fadeOut 0.5s forwards;
+  animation-delay: 0s, 2s;
+}
+
+@keyframes upDown {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; display: none; }
 }

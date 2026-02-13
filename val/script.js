@@ -1,4 +1,5 @@
 const keys = document.querySelectorAll('.btn');
+const tiles = document.querySelectorAll('.tile');
 
 let x = 1;
 let y = 1;
@@ -14,21 +15,13 @@ keys.forEach(key => {
 });
 
 function updatetile(n) {
-    if (n == 'DEL') {
-        if(x == 1)
-            return;
-        const tileid = `r${y}t${x - 1}`;
-        const tile = document.getElementById(tileid);
-        tile.textContent = '';
-        x -= 1;
-        word = word.substring(0, word.length - 1);
-        return;
-    } else if (n == 'ENTER') {
+    if (n == 'ENTER') {
         if (x <= 5)
             return;
         compare();
         if (word == answer) {
-            console.log('correct');
+            keys.disabled = true;
+            animate();
             return;
         }
         word = '';
@@ -38,6 +31,17 @@ function updatetile(n) {
             keys.disabled = true;
             document.getElementById('btns').style.display = 'flex';
         }
+        return;
+    } else if (n == 'DEL') {
+        if(x == 1)
+            return;
+        if (word == answer)
+            return;
+        const tileid = `r${y}t${x - 1}`;
+        const tile = document.getElementById(tileid);
+        tile.textContent = '';
+        x -= 1;
+        word = word.substring(0, word.length - 1);
         return;
     }
     
@@ -69,4 +73,36 @@ function compare() {
             document.getElementById(word[i]).disabled = true;
         }
     }
+}
+
+document.getElementById('play').addEventListener('click', () => {
+    document.getElementById('btns').style.display = 'none';
+    x = 1;
+    y = 1;
+    word = '';
+    keys.forEach(key => {
+        key.style.boxShadow = '0 4px 0 #555555';
+        key.style.background = 'linear-gradient(to bottom, #4d4d4d 0%, #424242 100%)';
+        key.disabled = false;
+    });
+    tiles.forEach(tile => {
+        tile.style.boxShadow = '0 4px 0 #555555';
+        tile.style.background = 'linear-gradient(to bottom, #4d4d4d 0%, #424242 100%)';
+        tile.textContent = '';
+    });
+});
+
+async function animate() {
+    keys.forEach((key, index) => {
+        setTimeout(() => {
+            key.classList.add("animate");
+        }, index * 50); 
+    });
+    await sleep(4000);
+    document.getElementById('keyboard').style.display = 'none';
+    document.getElementById('ttl').style.display = 'none';
+}
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
