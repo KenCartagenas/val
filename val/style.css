@@ -6,8 +6,8 @@
 }
 
 body, html {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 body {
@@ -15,21 +15,18 @@ body {
   background-color: rgb(18, 18, 19);
 }
 
-
-
 #main-container {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(18, 18, 19);
 }
 
 #content-container {
     height: 90%;
     width: 95%;
     display: flex;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-top: 20px;
@@ -65,29 +62,71 @@ body {
     gap: 9px;
 }
 
-.tile {
-    font-weight: 1000;
+.card {
     height: 95%;
     width: 18%;
     max-height: 70px;
     max-width: 70px;
+}
+
+.tile {
+    height: 100%;
+    width: 100%;
+    max-height: 70px;
+    max-width: 70px;
+    font-weight: 1000;
+    
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 50px;
 
+    position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.flip .tile {
+  transform: rotateY(180deg);
+}
+
+.front {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-height: 70px;
+    max-width: 70px;
     padding: 10px 25px;
     border: none;
     border-radius: 12px;
-    box-shadow: 0 4px 0 #555555;
+    box-shadow: 0 4px 0 #ada0a0;
     background: linear-gradient(to bottom, #4d4d4d 0%, #424242 100%);
     color: white;
     font-weight: bold;
+    backface-visibility: hidden;
 }
 
-.tile:hover {
+.back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-height: 70px;
+    max-width: 70px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 0 #cc1e1e;
+    background: linear-gradient(to bottom, #db0000 0%, #ff1d1d 100%);
+    color: white;
+    font-weight: bold;
     transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+
+.front span, .back span {
+    display: inline-block;
+    transform: translateX(-10px);
 }
 
 #keyboard {
@@ -145,7 +184,7 @@ body {
     background: rgb(145, 145, 145);
 }
 
-#btns {
+.btns {
     display: none;
     justify-content: center;
     align-items: center;
@@ -153,7 +192,7 @@ body {
     margin-top: 10px;
 }
 
-#btns button {
+.btns button {
     height: 40px;
     width: 95x;
     padding: 10px 25px;
@@ -186,4 +225,191 @@ body {
 
 @keyframes fadeOut {
   to { opacity: 0; display: none; }
+}
+
+.bg-layer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, #292929 0%, #dd0000cb 100%);
+  /*background-color: red;*/
+  transform: translate(-50%, -50%) scale(0); 
+  z-index: -1;
+  transition: transform 5s ease-out;
+  pointer-events: none;
+}
+
+.bg-layer.active {
+  transform: translate(-50%, -50%) scale(50);
+}
+
+.bg-layer {
+  opacity: 0;
+  transition: transform 5s ease-out, opacity 0.5s ease-in;
+}
+
+.bg-layer.active {
+  opacity: 1;
+}
+
+#yes, #no {
+    min-width: none;
+    max-width: none;
+    width: 100px;
+    color: #ffffff;
+    transform: translate();
+}
+
+#yes {
+    background: linear-gradient(to bottom, #00990d 0%, #008026 100%);
+    box-shadow: 0 4px 0 #005c23;
+}
+
+#no {
+    background: linear-gradient(to bottom, #d80d0d 0%, #ff0d0d 100%);
+    box-shadow: 0 4px 0 #7a0101;
+}
+
+#yes:active {
+    background: linear-gradient(to bottom, #004e07 0%, #004615 100%);
+    box-shadow: 0 4px 0 #005c23;
+}
+
+#no:active {
+    background: linear-gradient(to bottom, #7a0707 0%, #9c0808 100%);
+    box-shadow: 0 4px 0 #7a0101;
+}
+
+#mcard {
+    height: 75%;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.message {
+    height: 70%;
+    width: 80%;
+    perspective: 1000px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner {
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+    font-weight: 1000;
+    
+    border-radius: 15x;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.message.flip .inner {
+  transform: rotateY(-180deg);
+}
+
+.front-message {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+    background-color: #ff5c5c;
+    border: 1px solid rgb(255, 163, 163);
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    backface-visibility: hidden;
+}
+
+.back-message {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #ffffff 0%, #ffc4c4 100%);
+    color: white;
+    font-weight: bold;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-message {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 70%;
+    color: #555555;
+    font-size: 40px;
+    text-align: justify;
+}
+
+#btn3 {
+    padding-bottom: 20px;
+}
+
+#open {
+    width: 150px;
+    font-size: large;
+    font-weight: 900;
+    background: linear-gradient(to bottom, #00990d 0%, #008026 100%);
+    box-shadow: 0 4px 0 #005c23;
+    color: #ffffff;
+}
+
+#open:active {
+    background: linear-gradient(to bottom, #004e07 0%, #004615 100%);
+    box-shadow: 0 4px 0 #005c23;
+}
+
+#popup-box {
+    background-color: #0000007c;
+    position: fixed;
+    top: 0;
+    min-height: 100vh;
+    min-width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#popup-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    min-height: 500px;
+    min-width: 300px;
+    max-width: 350px;
+    background: url('heartbg.jpeg');
+    border-radius: 20px;
+    color: rgb(255, 58, 58);
+    font-size: large;
+    font-weight: 1000;
 }
